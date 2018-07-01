@@ -8,8 +8,17 @@
     "build": "tsc",
     "test": "mocha -r ts-node/register test/**/test.ts"
     },
-  "author": "",
   "license": "ISC",
+  "repository": {
+  "type": "git",
+  "url": "git+https://github.com/KobbyMmo/numbersToWord.git"
+ },
+ "keywords": [],
+ "author": "Obed Amoasi <obedamoasi@gmail.com>",
+ "bugs": {
+  "url": "https://github.com/KobbyMmo/numbersToWord/issues"
+ },
+ "homepage":"https://github.com/KobbyMmo/numbersToWord/#readme"  ,
   "devDependencies": {
     "@types/chai": "^4.1.4",
     "@types/mocha": "^5.2.4",
