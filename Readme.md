@@ -1,4 +1,4 @@
-# mypluralize
+# numbertoword
 A Node.js module that converts a number to its word equivalent
 
 ## Installation 
