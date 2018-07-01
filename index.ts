@@ -66,7 +66,6 @@ export class NumToWord {
                 word = word + current;
             }
             else {
-                console.log('word', `|${current}|    ` + `|${word}|`);
                 word = current + this.SPACE + this.scaleNumbers[index] + this.SPACE + word;
 
             }

@@ -63,4 +63,13 @@ describe('Get number from word', () => {
     const result = numToWord.getWordFromNumber(100000);
     expect(result).to.equal('One Hundred Thousand');
   });
+  it('should return One Million', () => {
+    const result = numToWord.getWordFromNumber(1000000);
+    expect(result).to.equal('One Million');
+  });
+
+  it('should return One Million One Hundred and One', () => {
+    const result = numToWord.getWordFromNumber(1000101);
+    expect(result).to.equal('One Million One Hundred and One');
+  });
 });
