@@ -5,7 +5,7 @@
 
 export class NumToWord {
     private HUNDRED = 'Hundred';
-    private AND = ' and ';
+    private AND = 'and';
     private COMMA = ", ";
     private NEGATIVE = "Negative";
 
@@ -19,7 +19,7 @@ export class NumToWord {
     private tensOffset = 2
 
     // Scale number names for use during recombination
-    private scaleNumbers = ["Thousand", "Million", "Billion", "Trillion"];
+    private scaleNumbers = ["", "Thousand", "Million", "Billion", "Trillion"];
     SPACE = ' ';
 
     /**
@@ -30,7 +30,7 @@ export class NumToWord {
 
 
     getWordFromNumber(num: number): String {
-        let word = '';
+        let word: String = '';
 
         // Zero rule
         if (num == 0) {
@@ -38,22 +38,54 @@ export class NumToWord {
         }
         let positiveNumber = Math.abs(num);
 
-        let digitgroup = [];
+        let digitgroup = this.splitNumbersInThrees(positiveNumber);
+
+        let wordGroup: String[] = []
+        digitgroup.forEach(digit => {
+            wordGroup.push(this.threeDigitGroupToWords(digit));
+
+        })
+        word = this.recombineWords(wordGroup, digitgroup[0])
+        return num < 0 ? this.NEGATIVE + this.SPACE + word : word;
+
+    }
+
+    recombineWords(wordGroup: String[], last3Digits: number): String {
+        if (wordGroup.length == 1) {
+            return wordGroup[0]
+        }
+        let word = '';
+        console.log(wordGroup);
+
+        wordGroup.forEach((current, index) => {
+            if (current == '') {
+                return;
+            } else if (index == 0 && last3Digits < 100) {
+                word = this.AND + this.SPACE + current;
+            } else if (index == 0) {
+                word = word + current;
+            }
+            else {
+                console.log('word', `|${current}|    ` + `|${word}|`);
+                word = current + this.SPACE + this.scaleNumbers[index] + this.SPACE + word;
+
+            }
+        });
+        return String(word.trim());
+    }
+
+    private splitNumbersInThrees(positiveNumber: number): Array<number> {
+        let digitgroup = []; this.SPACE
         let modulus = positiveNumber % 1000
 
         while (positiveNumber > 0) {
             digitgroup.push(modulus);
             positiveNumber = Math.floor(positiveNumber / 1000);
-            modulus = positiveNumber % 1000
+            modulus = positiveNumber % 1000;
         }
-
-        digitgroup.forEach(digit => {
-            word = word + this.threeDigitGroupToWords(digit);
-        })
-        console.log(digitgroup);
-        return num < 0 ? this.NEGATIVE + this.SPACE + word : word;
-
+        return digitgroup;
     }
+
     private threeDigitGroupToWords(positiveNumber: number): String {
         if (positiveNumber == 0) {
             return '';
@@ -66,8 +98,8 @@ export class NumToWord {
         const hundredsDigit = Math.floor(positiveNumber / 100);
 
         return numAfterFirstPostition > 0
-        ? this.smallNumbers[hundredsDigit]+this.SPACE + this.HUNDRED+ this.AND + this.twoDigitsToWord(numAfterFirstPostition)
-        : this.smallNumbers[hundredsDigit]+this.SPACE + this.HUNDRED;
+            ? this.smallNumbers[hundredsDigit] + this.SPACE + this.HUNDRED + this.SPACE + this.AND + this.SPACE + this.twoDigitsToWord(numAfterFirstPostition)
+            : this.smallNumbers[hundredsDigit] + this.SPACE + this.HUNDRED;
     }
 
     private twoDigitsToWord(positiveNumber: number): String {

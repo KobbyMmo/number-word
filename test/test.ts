@@ -46,4 +46,21 @@ describe('Get number from word', () => {
     const result = numToWord.getWordFromNumber(101);
     expect(result).to.equal('One Hundred and One');
   });
+  it('should return One Thousand and Nineteen', () => {
+    const result = numToWord.getWordFromNumber(1019);
+    expect(result).to.equal('One Thousand and Nineteen');
+  });
+
+  it('should return One Thousand', () => {
+    const result = numToWord.getWordFromNumber(1000);
+    expect(result).to.equal('One Thousand');
+  });
+  it('should return Nine Thousand Nine Hundred and Ninety Nine', () => {
+    const result = numToWord.getWordFromNumber(9999);
+    expect(result).to.equal('Nine Thousand Nine Hundred and Ninety Nine');
+  });
+  it('should return One Hundred Thousand', () => {
+    const result = numToWord.getWordFromNumber(100000);
+    expect(result).to.equal('One Hundred Thousand');
+  });
 });
