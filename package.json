@@ -1,0 +1,20 @@
+{
+  "name": "numtoword",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start":"node dist/index.js",
+    "build": "tsc",
+    "test": "mocha -r ts-node/register test/**/test.ts"
+    },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.1.4",
+    "@types/mocha": "^5.2.4",
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "ts-node": "^7.0.0"
+  }
+}
