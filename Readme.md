@@ -13,26 +13,26 @@ bower install numtoword --save
 ### Javascript
 
 ```javascript
-var pluralise = require('mypluralize');
-var boys = pluralise.getPlural('Boy');
+var numtoword = require('numtoword');
+var word = numtoword.getWordFromNumber(100);
 ```
 ```sh
-Output should be 'Boys'
+Output should be 'One Hundred'
 ```
 
 ### TypeScript
 ```typescript
-import { getPlural } from 'mypluralize';
-console.log(getPlural('Goose'))
+import { getWordFromNumber } from 'numtoword';
+console.log(getWordFromNumber(100))
 ```
 ```sh
-Output should be 'Geese'
+Output should be 'One Hundred'
 ```
 
 ### AMD
 ```javascript
 define(function(require,exports,module){
-  var pluralise = require('mypluralize');
+  var numtoword = require('numtoword');
 });
 ```
 
