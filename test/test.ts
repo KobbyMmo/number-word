@@ -71,4 +71,12 @@ describe('Get number from word', () => {
     const result = getWordFromNumber(1000101);
     expect(result).to.equal('One Million One Hundred and One');
   });
+  it('should return One Million Nine Hundred and Ninety Nine', () => {
+    const result = getWordFromNumber(1000999);
+    expect(result).to.equal('One Million Nine Hundred and Ninety Nine');
+  });
+  it('should return One Million One Hundred Thousand Nine Hundred and Ninety Nine', () => {
+    const result = getWordFromNumber(1100999);
+    expect(result).to.equal('One Million One Hundred Thousand Nine Hundred and Ninety Nine');
+  });
 });
